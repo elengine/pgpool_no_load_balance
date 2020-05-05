@@ -25,7 +25,7 @@ Or install it yourself as:
 ### pgpool_nlb method
 
 Using the `pgpool_nlb` method will add a comment to the SQL.
-```irb
+```rb
 irb(main):001:0> User.pgpool_nlb.all
   /*NO LOAD BALANCE*/ SELECT "users".* FROM "users" LIMIT $1  [["LIMIT", 11]]
 ```
@@ -33,10 +33,12 @@ irb(main):001:0> User.pgpool_nlb.all
 ### unscope
 
 Can remove the scope with the unscope method.
-```irb
+```rb
 irb(main):001:0> user_relation = User.where(name: 'elengine').pgpool_nlb
+
 irb(main):002:0> user_relation.count
   /*NO LOAD BALANCE*/ SELECT COUNT(*) FROM "users" WHERE "users"."name" = $1  [["name", "elengine"]]
+
 irb(main):003:0> user_relation.unscope(:pgpool_nlb).order(:id).limit(3)
   SELECT "users".* FROM "users" WHERE "users"."name" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["name", "elengine"], ["LIMIT", 3]]
 ```
