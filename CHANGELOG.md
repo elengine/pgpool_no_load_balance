@@ -22,6 +22,10 @@ straightforward as possible.
 
 ### Security
  
+## [1.0.3] - 2020-05-05
+ 
+for RubyGems release.
+ 
 ## [1.0.2] - 2020-05-05
  
 Here we write upgrading notes for brands. It's a team effort to make them as
