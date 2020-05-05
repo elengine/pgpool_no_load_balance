@@ -22,6 +22,18 @@ straightforward as possible.
 
 ### Security
  
+## [1.0.1] - 2020-05-05
+ 
+### Added
+ 
+### Changed
+
+- change module name.
+ 
+### Fixed
+
+### Security
+ 
 ## [1.0.0] - 2020-05-05
  
 First release!
