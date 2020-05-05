@@ -1,5 +1,5 @@
 require "pgpool_no_load_balance/active_record/querying"
-require "pgpool_no_load_balance/active_record/relation"
+require "pgpool_no_load_balance/active_record/relation/query_methods"
 require "pgpool_no_load_balance/arel/select_manager"
 require "pgpool_no_load_balance/active_record/connection_adapters/postgresql_adapter"
 require "pgpool_no_load_balance/active_record/explain_subscriber"
@@ -11,7 +11,7 @@ module PgpoolNoLoadBalance
 
   def self.setup!
     ::ActiveRecord::Base.extend PgpoolNoLoadBalance::ActiveRecord::Querying
-    ::ActiveRecord::Relation.prepend PgpoolNoLoadBalance::ActiveRecord::Relation
+  ::ActiveRecord::Relation.prepend PgpoolNoLoadBalance::ActiveRecord::QueryMethods
     ::ActiveRecord::Relation::VALID_UNSCOPING_VALUES << :pgpool_nlb
     ::Arel::SelectManager.include PgpoolNoLoadBalance::Arel::SelectManager
     ::ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.prepend PgpoolNoLoadBalance::ActiveRecord::ConnectionAdapters::PostgreSQLAdapter

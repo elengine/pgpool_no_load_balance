@@ -1,6 +1,6 @@
 module PgpoolNoLoadBalance
   module ActiveRecord
-    module Relation
+    module QueryMethods
       def pgpool_nlb(value = true)
         spawn.pgpool_nlb!(value)
       end
