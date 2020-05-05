@@ -11,7 +11,7 @@ module PgpoolNoLoadBalance
 
   def self.setup!
     ::ActiveRecord::Base.extend PgpoolNoLoadBalance::ActiveRecord::Querying
-  ::ActiveRecord::Relation.prepend PgpoolNoLoadBalance::ActiveRecord::QueryMethods
+    ::ActiveRecord::Relation.prepend PgpoolNoLoadBalance::ActiveRecord::QueryMethods
     ::ActiveRecord::Relation::VALID_UNSCOPING_VALUES << :pgpool_nlb
     ::Arel::SelectManager.include PgpoolNoLoadBalance::Arel::SelectManager
     ::ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.prepend PgpoolNoLoadBalance::ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
