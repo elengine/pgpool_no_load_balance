@@ -8,6 +8,7 @@
 /tmp/
 /vendor/
 Gemfile.lock
+/.vscode/
 
 # rspec failure tracking
 .rspec_status
