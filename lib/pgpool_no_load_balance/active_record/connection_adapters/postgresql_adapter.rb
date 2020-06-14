@@ -2,6 +2,10 @@ module PgpoolNoLoadBalance
   module ActiveRecord
     module ConnectionAdapters
       module PostgreSQLAdapter
+        def execute(sql, name = nil, pgpool_nlb: false)
+          sql = "#{NLB_COMMENT} #{sql}" if !!pgpool_nlb
+          super sql, name
+        end
 
         private
 
