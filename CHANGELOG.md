@@ -22,14 +22,18 @@ straightforward as possible.
 
 ### Security
  
+## [1.1.0] - 2020-06-14
+ 
+Executes any SQL statement with comments.
+ 
+### Added
+- Added pgpool_nlb option to AR #execute.
+ 
 ## [1.0.3] - 2020-05-05
  
 for RubyGems release.
  
 ## [1.0.2] - 2020-05-05
- 
-Here we write upgrading notes for brands. It's a team effort to make them as
-straightforward as possible.
  
 ### Added
 - Adapter check feature. (PostgreSQLAdapterMissing exception is raised if the application is not using the Postgresql adaptor.)

@@ -8,23 +8,28 @@ If you don't want a query that qualifies for the load balancing to be load balan
 
 Add this line to your application's Gemfile:
 
-```ruby
+```rb
 gem 'pgpool_no_load_balance'
 ```
 
 And then execute:
 
-    $ bundle install
+```console
+$ bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install pgpool_no_load_balance
+```console
+$ gem install pgpool_no_load_balance
+```
 
 ## Usage
 
 ### pgpool_nlb method
 
 Using the `pgpool_nlb` method will add a comment to the SQL.
+
 ```rb
 irb(main):001:0> User.pgpool_nlb.all
   /*NO LOAD BALANCE*/ SELECT "users".* FROM "users" LIMIT $1  [["LIMIT", 11]]
@@ -33,6 +38,7 @@ irb(main):001:0> User.pgpool_nlb.all
 ### unscope
 
 Can remove the scope with the unscope method.
+
 ```rb
 irb(main):001:0> user_relation = User.where(name: 'elengine').pgpool_nlb
 
@@ -43,10 +49,21 @@ irb(main):003:0> user_relation.unscope(:pgpool_nlb).order(:id).limit(3)
   SELECT "users".* FROM "users" WHERE "users"."name" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["name", "elengine"], ["LIMIT", 3]]
 ```
 
+### Arbitrary SQL execution
+
+Using the `pgpool_nlb` option of the execute method will add a comment to the SQL.
+
+```rb
+irb(main):001:0> ActiveRecord::Base.connection.execute('SELECT 1')
+  SELECT 1
+
+irb(main):002:0> ActiveRecord::Base.connection.execute('SELECT 1', pgpool_nlb: true)
+  /*NO LOAD BALANCE*/ SELECT 1
+```
+
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/elengine/pgpool_no_load_balance. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/elengine/pgpool_no_load_balance/blob/master/CODE_OF_CONDUCT.md).
-
+Bug reports and pull requests are welcome on GitHub at <https://github.com/elengine/pgpool_no_load_balance>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/elengine/pgpool_no_load_balance/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
