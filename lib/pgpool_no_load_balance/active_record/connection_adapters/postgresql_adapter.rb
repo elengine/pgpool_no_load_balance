@@ -9,8 +9,8 @@ module PgpoolNoLoadBalance
 
         private
 
-        def to_sql_and_binds(arel_or_sql_string, binds=[])
-          sql, binds = super
+        def to_sql_and_binds(arel_or_sql_string, *args)
+          sql, binds = super(arel_or_sql_string, *args)
           if arel_or_sql_string.respond_to?(:pgpool_nlb?) && arel_or_sql_string.pgpool_nlb?
             sql = "#{NLB_COMMENT} #{sql}"
           end
