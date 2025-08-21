@@ -21,8 +21,8 @@ module PgpoolNoLoadBalance
 
       private
 
-      def build_arel(aliases)
-        arel = super
+      def build_arel(...)
+        arel = super(...)
         arel.pgpool_nlb(pgpool_nlb_value)
         arel
       end

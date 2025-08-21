@@ -12,7 +12,7 @@ module PgpoolNoLoadBalance
   class PostgreSQLAdapterMissing < StandardError; end
 
   def self.setup!
-    unless ::ActiveRecord::Base.respond_to?(:postgresql_connection)
+    unless defined?(::ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
       raise PostgreSQLAdapterMissing, "No postgresql adapter specified by 'config/database.yml', or 'ActiveRecord::Base.establish_connection' method is not called."
     end
     ::ActiveRecord::Base.extend PgpoolNoLoadBalance::ActiveRecord::Querying
