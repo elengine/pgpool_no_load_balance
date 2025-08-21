@@ -9,12 +9,12 @@ module PgpoolNoLoadBalance
 
         private
 
-        def to_sql_and_binds(arel_or_sql_string, binds = [], preparable = nil) # :nodoc:
-          sql, binds, preparable = super
+        def to_sql_and_binds(arel_or_sql_string, binds = [], preparable = nil, allow_retry = false) # :nodoc:
+          sql, binds, preparable, allow_retry = super
           if arel_or_sql_string.respond_to?(:pgpool_nlb?) && arel_or_sql_string.pgpool_nlb?
             sql = "#{NLB_COMMENT} #{sql}"
           end
-          [sql.freeze, binds, preparable]
+          [sql.freeze, binds, preparable, allow_retry]
         end
       end
     end

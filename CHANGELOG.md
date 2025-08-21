@@ -21,7 +21,11 @@ straightforward as possible.
 ### Fixed
 
 ### Security
- 
+
+## [1.2.0] - 2025-08-28
+
+Rails 7.2 support
+
 ## [1.1.0] - 2020-06-14
  
 Executes any SQL statement with comments.
